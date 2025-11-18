@@ -52,7 +52,7 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky; /* ou 'fixed' se quiser que ele role junto */
+            position: sticky; 
             top: 0;
             z-index: 1000;
         }
@@ -69,18 +69,23 @@
 
         .header-logo span {
             margin-left: 8px;
-            color: var(--texto-principal); /* Cor diferente para o texto, se quiser */
+            color: var(--texto-principal); 
+        }
+
+        .actions-group {
+            display: flex;
+            align-items: center;
+            gap: 25px; 
         }
         
-        .header-nav a {
+        .actions-group a:not(.admin-button) {
             color: var(--texto-principal);
-            margin-left: 25px;
             font-weight: 600;
             padding: 5px 0;
             position: relative;
         }
 
-        .header-nav a::after {
+        .actions-group a:not(.admin-button)::after {
             content: '';
             position: absolute;
             left: 0;
@@ -91,13 +96,14 @@
             transition: width 0.3s ease-in-out;
         }
 
-        .header-nav a:hover::after {
+        .actions-group a:not(.admin-button):hover::after {
             width: 100%;
         }
 
 
+        /* ALTERAÇÃO: Cor de fundo do botão Área Restrita para verde */
         .admin-button {
-            background-color: var(--vermelho-restrito);
+            background-color: var(--verde-principal); 
             color: var(--branco);
             padding: 10px 20px;
             border: none;
@@ -108,20 +114,20 @@
         }
 
         .admin-button:hover {
-            background-color: #c82333;
+            background-color: var(--verde-escuro);
         }
 
         /* Seção de Destaque (Hero Section) */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1600/600?nature') no-repeat center center/cover; /* Imagem de natureza aleatória */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/img1.jpg') no-repeat center center/cover; 
             color: var(--branco);
-            text-align: center;
-            padding: 100px 20px;
+            text-align: left; 
+            padding: 100px 40px;
             min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; 
         }
 
         .hero-section h1 {
@@ -129,15 +135,16 @@
             font-size: 3em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            max-width: 600px; 
         }
 
         .hero-section p {
             font-size: 1.2em;
-            max-width: 800px;
+            max-width: 600px; 
             margin-bottom: 40px;
         }
 
-        /* Seções de Ênfase */
+        /* Seções de Ênfase - Configuração Geral */
         .container {
             max-width: 1200px;
             margin: 40px auto;
@@ -147,13 +154,18 @@
             gap: 40px;
         }
 
+        /* Estilo Base dos Cards de Ênfase */
         .emphasis-card {
-            background-color: var(--branco);
+            background-color: var(--verde-escuro); 
+            color: var(--branco);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; 
+            overflow: hidden; 
+            min-height: 250px;
         }
 
         .emphasis-card:hover {
@@ -161,16 +173,63 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.12);
         }
 
+        /* Elemento ::before para a imagem de fundo e overlay */
+        .emphasis-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8; 
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Aumenta a opacidade do fundo (clareia) no hover */
+        .emphasis-card:hover::before {
+             opacity: 0.9; 
+        }
+
+        /* Garante que o conteúdo fique por cima da imagem */
+        .emphasis-card h2, .emphasis-card p {
+            position: relative;
+            z-index: 2;
+            color: var(--branco); 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
+        }
+
+        /* Diminuindo a fonte dos títulos dos cartões */
         .emphasis-card h2 {
-            color: var(--verde-principal);
-            font-size: 1.8em;
+            font-size: 1.4em; 
             margin-bottom: 15px;
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
         }
 
         .emphasis-card p {
             font-size: 1.1em;
-            color: #555;
         }
+
+        /* ====================================================
+        CONFIGURAÇÕES ESPECÍFICAS DE IMAGEM
+        ==================================================== */
+
+        /* Card 1: Parque Estadual da Costa do Sol (img/img2.jpg) */
+        #costa-do-sol::before {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('img/img2.jpg');
+        }
+
+        /* Card 2: Reserva Ecológica Estadual de Jacarepiá (img/img3.jpg) */
+        #jacarepia::before {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('img/img3.jpg');
+        }
+        
+        /* FIM DAS CONFIGURAÇÕES ESPECÍFICAS DE IMAGEM */
+
 
         /* Botões de Navegação (Centralizados) */
         .nav-buttons-section {
@@ -184,7 +243,7 @@
             display: flex;
             justify-content: center;
             gap: 25px;
-            flex-wrap: wrap; /* Para botões em várias linhas em telas menores */
+            flex-wrap: wrap; 
         }
 
         .nav-button {
@@ -225,20 +284,24 @@
                 flex-direction: column;
                 padding: 15px 20px;
             }
-            .header-nav {
+            .actions-group {
                 margin-top: 10px;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 15px;
             }
-            .header-nav a {
-                margin: 5px 10px;
+
+            .hero-section {
+                padding: 60px 20px; 
+                align-items: center; 
+                text-align: center;
             }
             .hero-section h1 {
                 font-size: 2.2em;
             }
             .container {
-                grid-template-columns: 1fr; /* Uma coluna em telas menores */
+                grid-template-columns: 1fr; 
             }
             .nav-buttons {
                 flex-direction: column;
@@ -257,29 +320,29 @@
         <a href="index.html" class="header-logo">
             <span>💚 Circuito Saquarema Verde</span>
         </a>
-        <nav class="header-nav">
+        
+        <div class="actions-group">
             <a href="#">Sobre</a>
             <a href="#">Contato</a>
             <a href="#">Galeria</a>
-        </nav>
-        <a href="admin.html" class="admin-button">Área Restrita</a>
+            <a href="admin.html" class="admin-button">Área Restrita</a>
+        </div>
     </header>
 
     <div class="hero-section">
         <h1>Explore a Beleza Natural de Saquarema</h1>
         <p>Conecte-se com a natureza através de trilhas, cachoeiras e a rica biodiversidade do Circuito Saquarema Verde.</p>
-        <a href="#" class="nav-button" style="background-color: var(--verde-principal);">Saiba Mais</a>
     </div>
 
     <div class="container">
         
-        <div class="emphasis-card">
-            <h2>🌳 Parque Estadual da Costa do Sol</h2>
+        <div class="emphasis-card" id="costa-do-sol">
+            <h2>Parque Estadual da Costa do Sol</h2>
             <p>Um tesouro ecológico com dunas, restingas e praias preservadas. Lar de diversas espécies da fauna e flora local, um convite à exploração e à conservação.</p>
         </div>
 
-        <div class="emphasis-card">
-            <h2>🏞️ Reserva Ecológica Estadual de Jacarepiá</h2>
+        <div class="emphasis-card" id="jacarepia">
+            <h2>Reserva Ecológica Estadual de Jacarepiá</h2>
             <p>Área de proteção integral que abriga manguezais, lagoas e uma impressionante variedade de aves e animais. Essencial para o equilíbrio ambiental da região.</p>
         </div>
 
