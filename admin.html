@@ -4,117 +4,254 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área Restrita - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Reutiliza alguns estilos do index.html e adiciona específicos */
+        /* Variáveis CSS para cores */
+        :root {
+            --verde-principal: #28a745;
+            --verde-escuro: #1e7e34;
+            --azul-acao: #007bff;
+            --vermelho-restrito: #dc3545;
+            --cinza-claro: #f8f9fa;
+            --branco: #ffffff;
+            --texto-principal: #333;
+            --borda-fina: #ced4da;
+        }
+
+        /* Estilos globais */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--cinza-claro);
+            color: var(--texto-principal);
+            line-height: 1.6;
         }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--verde-escuro);
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--azul-acao);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Cabeçalho */
         header {
-            background-color: #28a745; 
-            color: white;
-            padding: 15px 20px;
+            background-color: var(--branco);
+            color: var(--texto-principal);
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .header-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none; 
+
+        .header-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--verde-principal);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
+
+        .header-logo span {
+            margin-left: 8px;
+            color: var(--texto-principal);
+        }
+        
+        /* Container principal */
         .admin-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80vh;
-        }
-        .login-box, .admin-panel {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 350px;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0 20px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            min-height: calc(100vh - 80px); /* Altura da tela menos o cabeçalho */
+            padding: 20px;
             box-sizing: border-box;
         }
-        .login-button {
+
+        .login-box, .admin-panel {
+            background-color: var(--branco);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
             width: 100%;
-            background-color: #dc3545;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
+            max-width: 450px;
+            text-align: center;
         }
 
-        /* Estilos do Painel Admin (Simulação após login) */
+        .login-box h2, .admin-panel h2 {
+            color: var(--verde-principal);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"], 
+        input[type="password"],
+        textarea {
+            width: calc(100% - 20px); /* Ajuste para padding */
+            padding: 12px 10px;
+            margin-bottom: 25px;
+            border: 1px solid var(--borda-fina);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        input[type="text"]:focus, 
+        input[type="password"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--verde-principal);
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+        }
+
+        .login-button {
+            width: 100%;
+            background-color: var(--vermelho-restrito);
+            color: var(--branco);
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .login-button:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Estilos do Painel Admin */
         .admin-panel {
-            width: 80%;
-            max-width: 800px;
+            max-width: 900px;
             text-align: left;
         }
-        .admin-panel h2 {
-            text-align: center;
-            color: #1e7e34;
-        }
-        .event-item {
-            border: 1px solid #ddd;
-            padding: 15px;
+
+        .admin-panel h3 {
+            color: var(--azul-acao);
+            margin-top: 30px;
             margin-bottom: 15px;
-            border-radius: 6px;
+            border-bottom: 2px solid var(--cinza-medio);
+            padding-bottom: 10px;
         }
+
+        .event-item {
+            background-color: var(--cinza-claro);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .event-item h4 {
+            color: var(--verde-escuro);
+            margin-bottom: 5px;
+        }
+
+        .event-item p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
         .event-item button {
-            background-color: #ffc107; /* Amarelo para editar */
-            color: #333;
+            background-color: #ffc107; /* Amarelo */
+            color: var(--texto-principal);
             border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
-            margin-left: 10px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            align-self: flex-end; /* Alinha o botão à direita */
+        }
+
+        .event-item button:hover {
+            background-color: #e0a800;
+        }
+
+        .update-button {
+            background-color: #17a2b8; /* Azul claro */
+            margin-top: 15px;
+        }
+
+        .update-button:hover {
+            background-color: #138496;
+        }
+
+        .security-note {
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsividade básica */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            .admin-container {
+                min-height: auto;
+                padding: 20px 10px;
+            }
+            .login-box, .admin-panel {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="header-button">💚 Circuito Saquarema Verde</a>
-        </header>
+        <a href="index.html" class="header-logo">
+            <span>💚 Circuito Saquarema Verde</span>
+        </a>
+    </header>
 
     <div class="admin-container">
         <div class="login-box" id="loginForm">
             <h2>🔐 Login de Administrador</h2>
             <form onsubmit="event.preventDefault(); showAdminPanel();">
                 <label for="username">Usuário:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" required autocomplete="username">
                 
                 <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required autocomplete="current-password">
                 
                 <button type="submit" class="login-button">Entrar</button>
-<p style="font-size: 0.75em; color: #6c757d; margin-top: 15px;">
-    * A versão completa implementará criptografia de senha (Bcrypt) e comunicação via HTTPS para garantir a segurança dos dados.
-</p>
+                <p class="security-note">
+                    * A versão completa implementará criptografia de senha (Bcrypt) e comunicação via HTTPS para garantir a segurança dos dados.
+                </p>
             </form>
         </div>
 
         <div class="admin-panel" id="adminPanel" style="display: none;">
             <h2>🛠️ Painel de Administração</h2>
-            <p>Aqui o administrador pode **alterar a disponibilidade de horários** e **incluir atualizações**.</p>
+            <p>Gerencie eventos e atualizações do Circuito Saquarema Verde.</p>
             
             <h3>Gestão de Eventos</h3>
 
@@ -132,9 +269,9 @@
                 <button onclick="alert('Funcionalidade de Alteração de Horário (Requer Backend)');">Alterar Horários</button>
             </div>
 
-            <h3>Incluir Atualização/Notícia</h3>
-            <textarea style="width: 100%; height: 100px; margin-top: 10px;" placeholder="Digite a nova atualização..."></textarea>
-            <button class="login-button" style="background-color: #17a2b8; margin-top: 10px;" onclick="alert('Funcionalidade de Inclusão de Atualização (Requer Backend)');">Publicar Atualização</button>
+            <h3>Incluir Nova Atualização</h3>
+            <textarea style="width: 100%; height: 120px; margin-top: 10px;" placeholder="Digite aqui a nova atualização, notícia ou comunicado para os usuários..."></textarea>
+            <button class="login-button update-button" onclick="alert('Funcionalidade de Inclusão de Atualização (Requer Backend)');">Publicar Atualização</button>
 
         </div>
     </div>
@@ -142,18 +279,17 @@
     <script>
         function showAdminPanel() {
             // Em um MVP sem backend, apenas simula que o login foi bem-sucedido
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
-            
-            // Simulação de configurações de Administrador:
             const user = document.getElementById('username').value;
             const pass = document.getElementById('password').value;
             
-            // Exemplo de Admin configurado (SEM SEGURANÇA)
+            // SIMULAÇÃO DE LOGIN (NÃO SEGURO PARA PRODUÇÃO)
             if (user === "admin" && pass === "senha123") {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
                 console.log("Login de administrador bem-sucedido (SIMULADO)!");
             } else {
-                 console.log("Login de administrador (SIMULADO)!");
+                alert("Usuário ou senha incorretos (SIMULAÇÃO)");
+                console.log("Tentativa de login falhou (SIMULADO)");
             }
         }
     </script>

@@ -4,108 +4,304 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circuito Saquarema Verde - Início</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Estilos básicos para o layout */
+        /* Variáveis CSS para cores */
+        :root {
+            --verde-principal: #28a745; /* Verde do Circuito */
+            --verde-escuro: #1e7e34;
+            --azul-acao: #007bff;
+            --vermelho-restrito: #dc3545;
+            --cinza-claro: #f8f9fa;
+            --cinza-medio: #e9ecef;
+            --branco: #ffffff;
+            --texto-principal: #333;
+        }
+
+        /* Estilos globais */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--cinza-claro);
+            color: var(--texto-principal);
+            line-height: 1.6;
         }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--verde-escuro);
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--azul-acao);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Cabeçalho Fixo */
         header {
-            background-color: #28a745; /* Verde do Circuito */
-            color: white;
-            padding: 15px 20px;
+            background-color: var(--branco);
+            color: var(--texto-principal);
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky; /* ou 'fixed' se quiser que ele role junto */
+            top: 0;
+            z-index: 1000;
         }
-        .header-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none; /* Para parecer um link/botão */
+
+        .header-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--verde-principal);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
+
+        .header-logo span {
+            margin-left: 8px;
+            color: var(--texto-principal); /* Cor diferente para o texto, se quiser */
+        }
+        
+        .header-nav a {
+            color: var(--texto-principal);
+            margin-left: 25px;
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--verde-principal);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+
+
         .admin-button {
-            background-color: #dc3545; /* Vermelho para Área Restrita */
-            color: white;
-            padding: 10px 15px;
+            background-color: var(--vermelho-restrito);
+            color: var(--branco);
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
         }
-        .container {
-            padding: 20px;
+
+        .admin-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Seção de Destaque (Hero Section) */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1600/600?nature') no-repeat center center/cover; /* Imagem de natureza aleatória */
+            color: var(--branco);
             text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .emphasis-section {
-            background-color: #e9ecef;
-            padding: 40px;
-            margin-bottom: 30px;
+
+        .hero-section h1 {
+            color: var(--branco);
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        /* Seções de Ênfase */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Duas colunas para ênfase */
+            gap: 40px;
+        }
+
+        .emphasis-card {
+            background-color: var(--branco);
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .emphasis-section h2 {
-            color: #1e7e34;
+
+        .emphasis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
         }
+
+        .emphasis-card h2 {
+            color: var(--verde-principal);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .emphasis-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Botões de Navegação (Centralizados) */
+        .nav-buttons-section {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--cinza-medio);
+            margin-top: 40px;
+        }
+
         .nav-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            flex-wrap: wrap; /* Para botões em várias linhas em telas menores */
         }
+
         .nav-button {
-            background-color: #007bff; /* Azul */
-            color: white;
-            padding: 15px 25px;
+            background-color: var(--azul-acao);
+            color: var(--branco);
+            padding: 15px 30px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none;
             font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         .nav-button:hover {
             background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: var(--branco);
+            margin: 0 10px;
+        }
+
+        /* Responsividade básica */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            .header-nav {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .header-nav a {
+                margin: 5px 10px;
+            }
+            .hero-section h1 {
+                font-size: 2.2em;
+            }
+            .container {
+                grid-template-columns: 1fr; /* Uma coluna em telas menores */
+            }
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-button {
+                width: 80%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="header-button">💚 Circuito Saquarema Verde</a>
-
+        <a href="index.html" class="header-logo">
+            <span>💚 Circuito Saquarema Verde</span>
+        </a>
+        <nav class="header-nav">
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+            <a href="#">Galeria</a>
+        </nav>
         <a href="admin.html" class="admin-button">Área Restrita</a>
     </header>
 
+    <div class="hero-section">
+        <h1>Explore a Beleza Natural de Saquarema</h1>
+        <p>Conecte-se com a natureza através de trilhas, cachoeiras e a rica biodiversidade do Circuito Saquarema Verde.</p>
+        <a href="#" class="nav-button" style="background-color: var(--verde-principal);">Saiba Mais</a>
+    </div>
+
     <div class="container">
         
-        <div class="emphasis-section">
-            <h1>Descubra a Natureza de Saquarema</h1>
-            <p>O Circuito Saquarema Verde convida você a explorar as áreas de conservação mais importantes da região.</p>
-
+        <div class="emphasis-card">
             <h2>🌳 Parque Estadual da Costa do Sol</h2>
-            <p>Conheça a biodiversidade marinha e costeira, com paisagens de restinga e praias intocadas.</p>
-
-            <h2>🏞️ Reserva Ecológica Estadual de Jacarepiá</h2>
-            <p>Um santuário ecológico vital para a fauna e flora, ideal para a observação da vida selvagem.</p>
+            <p>Um tesouro ecológico com dunas, restingas e praias preservadas. Lar de diversas espécies da fauna e flora local, um convite à exploração e à conservação.</p>
         </div>
 
+        <div class="emphasis-card">
+            <h2>🏞️ Reserva Ecológica Estadual de Jacarepiá</h2>
+            <p>Área de proteção integral que abriga manguezais, lagoas e uma impressionante variedade de aves e animais. Essencial para o equilíbrio ambiental da região.</p>
+        </div>
+
+    </div>
+
+    <div class="nav-buttons-section">
+        <h2>O que você deseja explorar?</h2>
         <div class="nav-buttons">
             <a href="#" class="nav-button">Biodiversidade</a>
             <a href="#" class="nav-button">Trilhas</a>
             <a href="#" class="nav-button">Cachoeiras</a>
             <a href="#" class="nav-button">Eventos</a>
         </div>
-
     </div>
+
+    <footer>
+        <p>&copy; 2025 Circuito Saquarema Verde. Todos os direitos reservados.</p>
+        <p>
+            <a href="#">Política de Privacidade</a> | 
+            <a href="#">Termos de Uso</a>
+        </p>
+    </footer>
 
 </body>
 </html>
