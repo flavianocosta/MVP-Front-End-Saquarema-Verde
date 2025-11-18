@@ -134,13 +134,13 @@
         .hero-section {
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('img/img1.jpg') no-repeat center center/cover; 
             color: var(--branco);
-            text-align: left; 
+            text-align: left; /* CORRIGIDO: Volta a alinhar o texto à esquerda */ 
             padding: 100px 40px;
             min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start; 
+            align-items: flex-start; /* CORRIGIDO: Volta a alinhar os itens flexíveis à esquerda */ 
         }
 
         .hero-section h1 {
@@ -151,12 +151,14 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
             max-width: 600px; 
             line-height: 1.1;
+            margin-left: 0; /* CORRIGIDO: Remove a margem automática para voltar à esquerda */
         }
 
         .hero-section p {
             font-size: 1.4em; 
             max-width: 600px; 
             margin-bottom: 30px; 
+            margin-left: 0; /* CORRIGIDO: Remove a margem automática para voltar à esquerda */
         }
         
         /* Estilo para o Botão de Novidades na Hero Section */
@@ -174,6 +176,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: all 0.4s ease; 
             display: inline-block; 
+            margin-left: auto; /* NOVO: Empurra o botão para a direita */
         }
 
         .hero-button:hover {
@@ -205,7 +208,7 @@
         /* Seções de Ênfase - Configuração Geral */
         .container {
             max-width: 1200px;
-            margin: 0px auto 40px auto; /* CORRIGIDO: Margem superior 0px para anexar ao título */
+            margin: 0px auto 40px auto; 
             padding: 0 20px;
             display: grid;
             grid-template-columns: 1fr 1fr; 
@@ -448,15 +451,20 @@
                 text-align: center;
             }
             .hero-section h1 {
+                 margin-left: 0; 
                 font-size: 2.8em; 
             }
             .hero-section p {
+                margin-left: 0; 
                 font-size: 1.2em;
             }
             
             .hero-button {
                 padding: 12px 25px; 
                 font-size: 1em;
+                margin-left: auto; 
+                margin-right: auto; 
+                display: block; 
             }
 
             .main-title {
